@@ -1,9 +1,9 @@
-//这是第一次写的代码，会超时，但运行没问题
 #include <stdio.h>
 int n;
-int a[200][200];    // 构建矩阵
-int max = -1000; // 记录当前的最大值（先让其足够小）
-int cur;            // 记录此时计算的值
+int a[200][200];                 // 构建矩阵
+int b[100][100][100][100] = {0}; // 记忆矩阵，减少运算量
+int max = -1000;                 // 记录当前的最大值（先让其足够小）
+int cur;                         // 记录此时计算的值
 int Max(int a, int b)
 { // 选出两者之间较大的那一个
     if (a > b)
@@ -12,16 +12,31 @@ int Max(int a, int b)
         return b;
 }
 int compute(int i, int j, int x, int y)
-{                // 计算当前矩阵的大小
-    int num = 0; // 记录矩阵的大小
-    for (int p = i; p <= x; p++)
-    {
-        for (int q = j; q <= y; q++)
-        {
-            num += a[p][q]; // 计算
-        }
+{ // 计算当前矩阵的大小
+
+    if (j == y && i == x)
+    { // 当只有1*1的矩阵时
+        b[i][j][x][y] += a[x][y];
     }
-    return num; // 返回计算结果
+    else if (j == y && i < x)
+    { // 当只有一行时
+        b[i][j][x][y] = b[i][j][x - 1][y] + a[x][y];
+    }
+    else if (i == x && j < y)
+    { // 当只有一列时
+        b[i][j][x][y] = b[i][j][x][y - 1] + a[x][y];
+    }
+    else
+    { // 除开条状的情况
+        int num = 0;
+        for (int k = j; k <= y; k++)
+        {
+            num += a[x][k];
+        }
+        b[i][j][x][y] = b[i][j][x - 1][y] + num;
+    }
+
+    return b[i][j][x][y]; // 返回计算结果
 }
 int main()
 {
@@ -43,7 +58,7 @@ int main()
             for (x = i; x <= n; x++)
             {
                 for (y = j; y <= n; y++)
-                {   
+                {
                     cur = compute(i, j, x, y);
                     max = Max(max, cur); // 更新最大值
                 }
