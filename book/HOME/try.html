@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+<!-- login/register container -->
+<div class="container">
+    <!-- register -->
+    <div class="form-container sign-up-container">
+        <div class="form">
+            <h2>Sign Up</h2>
+            <input type="text" name="username" id="username" placeholder="Username...">
+            <input type="email" name="email" id="s-email" placeholder="Email...">
+            <input type="password" name="password" id="s-password" placeholder="Password...">
+            <button class="signUp">Sign Up</button>
+        </div>
+    </div>
+    <!-- login -->
+    <div class="form-container sign-in-container">
+        <div class="form">
+            <h2>Sign In</h2>
+            <input type="email" name="email" id="r-email" placeholder="Email...">
+            <input type="password" name="password" id="r-password" placeholder="Password...">
+            <a href="#" class="forget-password">Forget your password</a>
+            <button class="signIn">Sign In</button>
+        </div>
+    </div>
+</div>
+
+<!-- overlay container -->
+<div class="overlay_container">
+    <div class="overlay">
+        <!-- overlay left -->
+        <div class="overlay_panel overlay_left_container">
+            <h2>Welcome Back!</h2>
+            <p>To keep connected with us, please login with your personal info</p>
+            <button id="sign-in">Sign In</button>
+        </div>
+        <!-- overlay right -->
+        <div class="overlay_panel overlay_right_container">
+            <h2>Hello Friend!</h2>
+            <p>Enter your personal details and start your journey with us</p>
+            <button id="sign-up">Sign Up</button>
+        </div>
+    </div>
+</div>
+
+<script src="./index.js"></script>
+</body>
+
+</html>
